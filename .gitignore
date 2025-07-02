@@ -1,0 +1,13 @@
+# Ignore build output
+/dist
+
+# Ignore environment variables
+.env
+
+# Ignore RSA keys (never commit private keys!)
+/keys/private.key
+/keys/public.key
+
+# Optional: Node modules and system files
+/node_modules
+.DS_Store
