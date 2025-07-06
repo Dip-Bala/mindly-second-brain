@@ -22,13 +22,14 @@ authRouter.post('/signup', userZodValidation, usernameAvailablity, async (req: R
 })
 
 authRouter.post('/signin', usernameAvailablity, async (req: Request, res: Response) => {
+    console.log("signin got called")
     const user_password = req.body.password;
     const user = req.user as IUser;
     const match = await bcrypt.compare(user_password, user.password);
     if(match){
         //generate token and send it to the user
         const jwt_token = generateToken({ _id: user._id.toString(), username: user.username },);
-        res.json(jwt_token)
+        res.json({jwt: jwt_token})
     }
     else{
         res.status(411).send("Password does not match.")

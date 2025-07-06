@@ -59,7 +59,7 @@ export async function authMiddleware(
   res: Response,
   next: NextFunction
 ): Promise<void> {
-  const jwt_token: string = req.headers.token as string;
+  const jwt_token: string = req.headers.authorization as string;
   const decodedData = await verifyToken(jwt_token);
   if (!decodedData || typeof decodedData === "string") {
     res.status(411).send("Invalid token");
