@@ -7,6 +7,7 @@ import {generateToken} from '../jwtAuth/jwt'
 const authRouter = Router()
 
 authRouter.post('/signup', userZodValidation, usernameAvailablity, async (req: Request, res: Response) => {
+    console.log("signup got called")
     const {username, password} : UserSchemaType = req.body;
     const hashedPassword = await bcrypt.hash(password, 8);
     try{
@@ -14,9 +15,9 @@ authRouter.post('/signup', userZodValidation, usernameAvailablity, async (req: R
             username: username,
             password: hashedPassword
         })
-        res.status(200).send('You have succesfully Signedup');
+        res.status(200).send('You have succesfully signed up');
     }catch(e){
-        res.send(e)
+        res.status(403).send(e)
     }
 })
 
