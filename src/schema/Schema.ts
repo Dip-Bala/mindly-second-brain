@@ -2,11 +2,9 @@ import { Schema, model } from 'mongoose';
 
 
 const contentTypes: string[] = [
-    'image', 
-    'video', 
-    'article', 
-    'audio',
-    'post'
+    'youtube',
+    'document',
+    'tweet'
 ];
 const UserSchema = new Schema({
     username: {
@@ -35,12 +33,17 @@ const ContentSchema = new Schema({
         required: true
     },
     tags: [{
-        type : Schema.Types.ObjectId,
-        ref : 'tag'
+        // type : Schema.Types.ObjectId,
+        // ref : 'tag'
+       type: String
     }],
     userId : {
         type : Schema.Types.ObjectId,
         ref : 'user',
+    },
+    timeStamp: {
+        type: Date,
+        default: new Date()
     }
 
 });

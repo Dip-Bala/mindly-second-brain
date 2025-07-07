@@ -25,11 +25,7 @@ export const userZodSchema = z.object({
 });
 
 export const contentZodSchema = z.object({
-  type: z.enum(['image', 
-    'video', 
-    'article', 
-    'audio',
-    'post'], {
+  type: z.enum(['youtube', 'tweet', 'document'], {
     message: "The content type is not valid",
   }),
 

@@ -56,7 +56,7 @@ appRouter.post(
             });
             res.status(200).send("Course created");
         } catch (e) {
-            res.send("Invalid Input");
+            res.status(403).send(e);
         }
     }
 );
@@ -68,7 +68,7 @@ appRouter.get("/content", async (req: Request, res: Response) => {
             model: "user",
             select: "username",
         });
-        console.log(content);
+        // console.log(content);
         res.status(200).send(content);
         return;
     } catch (e: any) {
@@ -79,6 +79,7 @@ appRouter.get("/content", async (req: Request, res: Response) => {
 appRouter.delete("/content/:contentId", async (req: Request, res: Response) => {
     const userId = req.userId;
     const contentId = req.params.contentId;
+    console.log("delet got called ")
     try {
         await Content.deleteOne({ userId: userId, _id: contentId });
         res.status(200).send("ok");

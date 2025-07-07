@@ -78,7 +78,7 @@ export function contentZodValidation(
 ) {
   const parsedData = contentZodSchema.safeParse(req.body);
   if (!parsedData.success) {
-    res.send(parsedData.error.issues[0].message); //if there are n fields and n errors then there will be an array of errors. so we might want our user to resolve issues one by one so we show them errorr one by one
+    res.status(403).send(parsedData.error.issues[0].message); //if there are n fields and n errors then there will be an array of errors. so we might want our user to resolve issues one by one so we show them errorr one by one
     return;
   }
   next();
