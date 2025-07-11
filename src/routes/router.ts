@@ -1,5 +1,5 @@
 import { Schema } from "mongoose";
-import { Router, Request, Response, NextFunction } from "express";
+import { Router, Request, Response } from "express";
 import { User, Content, Tags, ShareLink, IUser } from "../schema/Schema";
 import { ContentSchemaType } from "../zod/zodSchema";
 import { authMiddleware, contentZodValidation } from "../middleware/middleware";
@@ -14,9 +14,6 @@ async function findLink(userId: Schema.Types.ObjectId) {
         return e;
     }
 }
-appRouter.get('/live', (req: Request, res: Response) => {
-    res.status(200).send('Mindly is live ');
-})
 
 appRouter.get("/mind/:shareLink", async (req: Request, res: Response) => {
     const hash = req.params.shareLink;

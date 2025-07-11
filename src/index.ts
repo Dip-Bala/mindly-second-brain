@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import { Request, Response } from "express";
 dotenv.config();
 
 import express from 'express';
@@ -18,6 +19,11 @@ app.use(express.json());
 
 app.use('/api/v1/mindly/auth', authRouter);
 app.use('/api/v1/mindly', appRouter);
+
+//health check
+app.get('/live', (req: Request, res: Response) => {
+    res.status(200).send('Mindly is live ');
+})
 
 async function main() {
   try{
