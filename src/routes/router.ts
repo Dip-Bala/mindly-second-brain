@@ -17,6 +17,7 @@ async function findLink(userId: Schema.Types.ObjectId) {
 appRouter.get('/live', (req: Request, res: Response) => {
     res.status(200).send('Mindly is live ');
 })
+
 appRouter.get("/mind/:shareLink", async (req: Request, res: Response) => {
     const hash = req.params.shareLink;
     try {

@@ -20,9 +20,13 @@ app.use('/api/v1/mindly/auth', authRouter);
 app.use('/api/v1/mindly', appRouter);
 
 async function main() {
-  await mongoose.connect(dbUrl);
-  app.listen(port, () => {
-    console.log(`Server is listening on port ${port}`);
-  });
+  try{
+    await mongoose.connect(dbUrl);
+    app.listen(port, () => {
+      console.log(`Server is listening on port ${port}`);
+    });
+  }catch(e){
+    console.log("Error in DB connection.")
+  }
 }
 main();
