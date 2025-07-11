@@ -1,8 +1,9 @@
 import jwt from 'jsonwebtoken'
-import fs from 'fs';
-import path from 'path'
-const PRIVATE_KEY = fs.readFileSync(path.join(__dirname, '../../keys/private.key'), 'utf8');
-const PUBLIC_KEY = fs.readFileSync(path.join(__dirname, '../../keys/public.key'), 'utf8');
+import dotenv from 'dotenv'
+dotenv.config();
+
+const PRIVATE_KEY = Buffer.from(process.env.PRIVATE_KEY!, 'base64').toString('utf8');
+const PUBLIC_KEY = Buffer.from(process.env.PUBLIC_KEY!, 'base64').toString('utf8');
 
 export function generateToken(payload: { _id: string, username: string}): string{
      const jwt_token = jwt.sign(payload, PRIVATE_KEY, {
