@@ -90,6 +90,7 @@ appRouter.delete("/content/:contentId", async (req: Request, res: Response) => {
 appRouter.post("/mind/share", async (req: Request, res: Response) => {
     const userId = req.userId;
     const { share } = req.body;
+    // console.log('')
     if (share) {
         try {
             const linkExist = await ShareLink.findOne({ userId: userId });
